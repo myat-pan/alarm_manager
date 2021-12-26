@@ -33,8 +33,11 @@ dependencies:
     sdk: flutter
   flutter_local_notifications: ^9.1.5
   flutter_ringtone_player: ^3.1.1
+  pusher_websocket_flutter: ^0.2.0
   ringtone_player: ^0.1.1
   shared_preferences: ^2.0.11
+  shimmer: ^2.0.0
+  web_socket_channel: ^2.1.0
 
 dev_dependencies:
   flutter_lints: ^1.0.0

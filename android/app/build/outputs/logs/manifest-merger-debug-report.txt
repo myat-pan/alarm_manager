@@ -9,6 +9,7 @@ MERGED from [:shared_preferences_android] /Users/user/Documents/FoodMall Project
 MERGED from [:flutter_ringtone_player] /Users/user/Documents/FoodMall Projects/alarm_manager/build/flutter_ringtone_player/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:ringtone_player] /Users/user/Documents/FoodMall Projects/alarm_manager/build/ringtone_player/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:flutter_local_notifications] /Users/user/Documents/FoodMall Projects/alarm_manager/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-28:12
+MERGED from [:pusher_websocket_flutter] /Users/user/Documents/FoodMall Projects/alarm_manager/build/pusher_websocket_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:android_alarm_manager] /Users/user/Documents/FoodMall Projects/alarm_manager/build/android_alarm_manager/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.media:media:1.1.0] /Users/user/.gradle/caches/transforms-2/files-2.1/1ff4bcb3167a74d75651e794e1872ecc/media-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.0.0] /Users/user/.gradle/caches/transforms-2/files-2.1/ddfeebee320e213e4569474cdfe875cf/appcompat-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -177,6 +178,8 @@ MERGED from [:ringtone_player] /Users/user/Documents/FoodMall Projects/alarm_man
 MERGED from [:ringtone_player] /Users/user/Documents/FoodMall Projects/alarm_manager/build/ringtone_player/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:flutter_local_notifications] /Users/user/Documents/FoodMall Projects/alarm_manager/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:flutter_local_notifications] /Users/user/Documents/FoodMall Projects/alarm_manager/build/flutter_local_notifications/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:pusher_websocket_flutter] /Users/user/Documents/FoodMall Projects/alarm_manager/build/pusher_websocket_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:pusher_websocket_flutter] /Users/user/Documents/FoodMall Projects/alarm_manager/build/pusher_websocket_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:android_alarm_manager] /Users/user/Documents/FoodMall Projects/alarm_manager/build/android_alarm_manager/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:android_alarm_manager] /Users/user/Documents/FoodMall Projects/alarm_manager/build/android_alarm_manager/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [androidx.media:media:1.1.0] /Users/user/.gradle/caches/transforms-2/files-2.1/1ff4bcb3167a74d75651e794e1872ecc/media-1.1.0/AndroidManifest.xml:20:5-22:41

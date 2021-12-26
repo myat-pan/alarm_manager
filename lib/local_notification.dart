@@ -6,8 +6,9 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
 void initNotifications() async {
-  var initializeAndroid = AndroidInitializationSettings('@mipmap/ic_launcher');
-  var initializeIOS = IOSInitializationSettings();
+  var initializeAndroid =
+      const AndroidInitializationSettings('@mipmap/ic_launcher');
+  var initializeIOS = const IOSInitializationSettings();
   var initializationSettings =
       InitializationSettings(android: initializeAndroid, iOS: initializeIOS);
 
@@ -26,7 +27,7 @@ void selectNotification(String? payload) async {
 Future singleNotification(
     DateTime scheduledDate, String title, String body, int hashCode,
     {required String sound}) async {
-  var androidChannel = AndroidNotificationDetails(
+  var androidChannel = const AndroidNotificationDetails(
     'channel-id',
     'channel-name',
     //'channel-description',
