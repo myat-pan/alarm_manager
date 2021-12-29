@@ -5,9 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:pusher_websocket_flutter/pusher.dart';
 
 class PusherService {
-  late Event lastEvent;
-  late String lastConnectionState;
-  late Channel channel;
+   Event lastEvent;
+   String lastConnectionState;
+   Channel channel;
   final StreamController<String> _eventData = StreamController<String>();
   Sink get _inEventData => _eventData.sink;
   Stream get eventStream => _eventData.stream;

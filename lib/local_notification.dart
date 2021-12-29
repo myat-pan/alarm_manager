@@ -1,45 +1,44 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
+// final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+//     FlutterLocalNotificationsPlugin();
 
-void initNotifications() async {
-  var initializeAndroid =
-      const AndroidInitializationSettings('@mipmap/ic_launcher');
-  var initializeIOS = const IOSInitializationSettings();
-  var initializationSettings =
-      InitializationSettings(android: initializeAndroid, iOS: initializeIOS);
+//  initNotifications() async {
+//  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+//     FlutterLocalNotificationsPlugin();
+//     var android = new AndroidInitializationSettings('@mipmap/ic_launcher');
+//     var iOS = new IOSInitializationSettings();
+//     var initSetttings = new InitializationSettings(android: android, iOS: iOS);
+//     flutterLocalNotificationsPlugin.initialize(initSetttings,
+//         onSelectNotification: selectNotification);
+// }
 
-  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
-  await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-      onSelectNotification: selectNotification);
-}
+// void selectNotification(String payload)  {
+//   if (payload != null) {
+//     debugPrint('notification payload: $payload');
+//   }
+//   //await FlutterRingtonePlayer.stop();
+// }
 
-void selectNotification(String? payload) async {
-  if (payload != null) {
-    debugPrint('notification payload: $payload');
-  }
-  await FlutterRingtonePlayer.stop();
-}
+// Future singleNotification(
+//   DateTime now,
+//    String title, String body, int hashCode,
+//     { String sound}) async {
+//   var androidChannel = const AndroidNotificationDetails(
+//     'channel-id',
+//     'channel-name',
+//     //'channel-description',
+//     importance: Importance.max,
+//     priority: Priority.max,
+//   );
 
-Future singleNotification(
-    DateTime scheduledDate, String title, String body, int hashCode,
-    {required String sound}) async {
-  var androidChannel = const AndroidNotificationDetails(
-    'channel-id',
-    'channel-name',
-    //'channel-description',
-    importance: Importance.max,
-    priority: Priority.max,
-  );
+//   var iosChannel = IOSNotificationDetails();
+//   var platformChannel =
+//       NotificationDetails(android: androidChannel, iOS: iosChannel);
 
-  var iosChannel = IOSNotificationDetails();
-  var platformChannel =
-      NotificationDetails(android: androidChannel, iOS: iosChannel);
-
-  flutterLocalNotificationsPlugin.schedule(
-      hashCode, title, body, scheduledDate, platformChannel,
-      payload: hashCode.toString());
-}
+//   // flutterLocalNotificationsPlugin.zonedSchedule(
+//   //     hashCode, title, body, scheduledDate, platformChannel,
+//   //     payload: hashCode.toString(), androidAllowWhileIdle: null, uiLocalNotificationDateInterpretation: null);
+// }
