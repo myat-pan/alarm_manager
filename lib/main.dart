@@ -57,6 +57,9 @@ class MyHomePageState extends State<MyHomePage> {
     var initSetttings = new InitializationSettings(android: android, iOS: iOS);
     flutterLocalNotificationsPlugin.initialize(initSetttings,
         onSelectNotification: onSelectNotification);
+        channel.stream.listen((event) {
+          
+        });
     super.initState();
   }
 
