@@ -240,6 +240,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.0"
+  pushy_flutter:
+    dependency: "direct main"
+    description:
+      name: pushy_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
   ringtone_player:
     dependency: "direct main"
     description:

@@ -1,12 +1,13 @@
-import 'dart:math';
-
+import 'dart:typed_data';
 import 'package:alarm_manager/app_manager.dart';
 import 'package:alarm_manager/pusher/pusher_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/status.dart' as status;
+import 'package:pushy_flutter/pushy_flutter.dart';
 
 void main() {
    WidgetsFlutterBinding.ensureInitialized();
@@ -45,10 +46,13 @@ class MyHomePageState extends State<MyHomePage> {
    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
   var channel = IOWebSocketChannel.connect(Uri.parse('ws://192.168.2.123:5556'));
  // var channel =IOWebSocketChannel.connect(Uri.parse("wss://ws-ap1.pusher.com:443/app/6f1153d1c6b4c827e1c1"));
+  var serverText ="";
+  String _deviceToken = "Loading...";
+  String _instruction = "Please Wait";
+
 
   @override
   void initState() {
-
     // pusherService = PusherService();
     // pusherService.firePusher('public', 'create');
     flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
@@ -57,10 +61,46 @@ class MyHomePageState extends State<MyHomePage> {
     var initSetttings = new InitializationSettings(android: android, iOS: iOS);
     flutterLocalNotificationsPlugin.initialize(initSetttings,
         onSelectNotification: onSelectNotification);
-        channel.stream.listen((event) {
-          
-        });
+        //  channel.stream.listen(
+        // (dynamic message) {
+        //   debugPrint('message $message');
+        // },
+        
+        // onDone: () {
+        //   debugPrint('ws channel closed');
+        // },
+        // onError: (error) {
+        //   debugPrint('ws error $error');
+        // },
+        //  );
+       channel.stream.listen((event) {
+         print(event);
+         if(event==null){
+           setState(() {
+             serverText= "Null";
+           });
+         }else{
+           setState(() {
+               serverText=event;
+           }); 
+      //     initPlatformState();
+      Pushy.listen();
+      Pushy.register();
+        //   showNotification();
+       // channel.sink.add("Heyyyyyyyyyyyyyyyyyyy");
+         }
+       
+      });
     super.initState();
+  }
+
+  void backgrounNotificationListener(Map<String, dynamic> data){
+    print("Received notification : $data");
+
+    String notificationTitle = "Pushy";
+    String notificationText = data ["message"]??"Hello World";
+    Pushy.notify(notificationTitle, notificationText, data);
+    Pushy.clearBadge();
   }
 
 
@@ -82,11 +122,37 @@ class MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
+Future<void> pushyRegister()async{
+
+  Pushy.setNotificationIcon('ic_launcher');
+  try{
+    String deviceToken = await Pushy.register();
+    print("Device Token: $deviceToken");
+    setState(() {
+      _deviceToken=deviceToken;
+      
+    });
+  }on PlatformException catch(e){
+    print("Error : ${e.message}");
+    setState(() {
+      _deviceToken = "Registration failed";
+
+    });
+  }
+  Pushy.setNotificationClickListener(backgrounNotificationListener);
+  Pushy.setNotificationClickListener((data) { 
+    print("Notification clicked : $data");
+    String message = data["message"]?? "Hello World!";
+  });
+}
   
+ 
 
   void sendData() {
     if (_controller.text.isNotEmpty) {
+    
       channel.sink.add(_controller.text);
+       
      // showNotification();
     }
   }
@@ -108,7 +174,8 @@ class MyHomePageState extends State<MyHomePage> {
 Future showNotification() async {
 var android = AndroidNotificationDetails(
         'channel id', 'channel NAME',
-        priority: Priority.high,importance: Importance.max
+        priority: Priority.high,importance: Importance.max,
+        playSound: true, additionalFlags: Int32List.fromList(<int>[4])
     );
     var iOS = IOSNotificationDetails();
     var platform = NotificationDetails(android: android, iOS: iOS);
@@ -142,12 +209,14 @@ var android = AndroidNotificationDetails(
                 ),
               ),
             ),
-            StreamBuilder(
-              stream: channel.stream,
-              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                if (!snapshot.hasData) {
+            // StreamBuilder(
+            //   stream: channel.stream,
+            //   builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+            //     print(snapshot.connectionState);
+                
+            //     if (!snapshot.hasData) {
             
-                  return Text("Null");
+            //       return Text("Null");
                   // return Shimmer.fromColors(
                   //   baseColor: Colors.grey[300]!,
                   //   highlightColor: Colors.grey[100]!,
@@ -175,16 +244,17 @@ var android = AndroidNotificationDetails(
                   //     },
                   //   ),
                   // );
-                }else{
-               var p = snapshot.data;
-               showNotification();
-                return Container(
+                // }else{
+              
+            
+                 Container(
+                  alignment: Alignment.center,
                   height: 200,
-                  child: Text(p),
-                );
-                }
-              },
-            ),
+                  child: Text(serverText),
+               // );
+               // }
+            //  },
+             ),
           ],
         ),
       ),
